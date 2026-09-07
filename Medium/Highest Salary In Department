@@ -1,0 +1,6 @@
+select department,first_name,salary
+from (
+select department,first_name,salary,dense_rank () over (partition by department order by salary desc ) as DN
+from employee
+) as newtable
+where DN=1
